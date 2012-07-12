@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<!--
+       Licensed to the Apache Software Foundation (ASF) under one
+       or more contributor license agreements.  See the NOTICE file
+       distributed with this work for additional information
+       regarding copyright ownership.  The ASF licenses this file
+       to you under the Apache License, Version 2.0 (the
+       "License"); you may not use this file except in compliance
+       with the License.  You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing,
+       software distributed under the License is distributed on an
+       "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+       KIND, either express or implied.  See the License for the
+       specific language governing permissions and limitations
+       under the License.
+-->
+<html>
+  <head>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>PhoneGap</title>
+      <link rel="stylesheet" href="master.css" type="text/css" media="screen" title="no title">
+      <script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+      <script type="text/javascript" charset="utf-8" src="tts.js"></script>
+      <script type="text/javascript" charset="utf-8" src="speechrecognizer.js"></script>
+      <script type="text/javascript" charset="utf-8" src="main.js"></script>
+      <script> 
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+    //
+    function onDeviceReady() {
+        window.plugins.tts.startup(startupWin, fail);
+    }
+    
+    function startupWin(result) {
+        // When result is equal to STARTED we are ready to play
+        if (result == TTS.STARTED) {
+            window.plugins.tts.getLanguage(win, fail);
+            window.plugins.speechrecognizer.init(speechInitOk, speechInitFail);
+            window.plugins.tts.speak("The text to speech service is ready");
+        }
+    }
+
+
+    function win(result) {
+        console.log(result);
+    }
+    
+    function fail(result) {
+        console.log("Error = " + result);
+    }
+    
+    function speak() {
+        window.plugins.tts.speak(document.getElementById('playMe').value);
+    }
+
+    function speechInitOk() {
+        alert("we are good");
+        supportedLanguages();
+        recognizeSpeech();
+    }
+    function speechInitFail(m) {
+        alert(m);
+    }
+
+    // Show the list of the supported languages
+    function supportedLanguages() {
+        window.plugins.speechrecognizer.getSupportedLanguages(function(languages){
+                // display the json array
+                alert(languages);
+            }, function(error){
+                alert("Could not retrieve the supported languages");
+        });
+    }
+
+    function recognizeSpeech() {
+        var requestCode = 1234;
+        var maxMatches = 5;
+        var promptString = "Please say a command";  // optional
+        var language = "en-US";                     // optional
+        window.plugins.speechrecognizer.startRecognize(speechOk, speechFail, requestCode, maxMatches, promptString, language);
+    }
+
+    function speechOk(result) {
+        var respObj, requestCode, matches;
+        if (result) {
+            respObj = JSON.parse(result);
+            if (respObj) {
+                var matches = respObj.speechMatches.speechMatch;
+
+                for (x in matches) {
+                    alert("possible match: " + matches[x]);
+                    // regex comes in handy for dealing with these match strings
+                }
+            }        
+        }
+    }
+
+    function speechFail(message) {
+        console.log("speechFail: " + message);
+    }
+
+
+    </script>
+  </head>
+  <body onload="onLoad();init();" id="stage" class="theme">
+    <h2>TTS Example</h2>
+    <input id="playMe" type="text"/><br/>
+    <input type="button" onClick="speak();" value="Speak"/>
+    <h1>Welcome to Cordova!</h1>
+  </body>
+</html>

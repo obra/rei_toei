@@ -17,19 +17,35 @@ requirejs.config({
 var responsePlugins = [];
 
 
-jQuery.each(PLUGINS, function(index,name) {
+
+function initializePlugins(pluginNames) {
+
+
+
+jQuery.each(pluginNames, function(index,name) {
 requirejs([name],
 function   (plugin) {
     responsePlugins.push(plugin);
 });
 
 });
+}
+
+
+
+function handleQuery(input) {
+
+    var responses = [];
+
+jQuery.each(responsePlugins, function(index,plugin) {
+    responses[plugin.name] = plugin.reply({ rawInput: input, jQuery: jQuery } );
+});
+    return responses;
+}
+
+initializePlugins(PLUGINS);
 
 
 var input = process.argv[2];
+console.log(handleQuery(input));
 
-
-jQuery.each(responsePlugins, function(index,plugin) {
-    plugin = responsePlugins[index];  
-    console.log(plugin.reply({ rawInput: input, jQuery: jQuery } ));
-});

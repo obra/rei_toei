@@ -31,5 +31,5 @@ var input = process.argv[2];
 
 jQuery.each(responsePlugins, function(index,plugin) {
     plugin = responsePlugins[index];  
-    console.log(plugin.reply(input));
+    console.log(plugin.reply({ rawInput: input, jQuery: jQuery } ));
 });

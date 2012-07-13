@@ -1,4 +1,6 @@
-require('jQuery');
+var PLUGINS = ['./plugins/greet', './plugins/weather'];
+
+var jQuery =require('jQuery');
 var requirejs = require('requirejs');
 
 requirejs.config({
@@ -15,7 +17,19 @@ requirejs.config({
     nodeRequire: require
 });
 
-requirejs(['./plugins/greet'],
-function   (greet) {
-    console.log(greet.reply());
+var responsePlugins = [];
+
+jQuery.each(PLUGINS, function(index,name) {
+requirejs([name],
+function   (plugin) {
+    responsePlugins.push(plugin);
+});
+
+});
+
+
+
+jQuery.each(responsePlugins, function(index,plugin) {
+    plugin = responsePlugins[index];  
+    console.log(plugin.reply());
 });

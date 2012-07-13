@@ -1,8 +1,6 @@
 var PLUGINS = ['./plugins/greet', './plugins/weather'];
-
 var jQuery =require('jQuery');
 var requirejs = require('requirejs');
-
 requirejs.config({
     //Use node's special variable __dirname to
     //get the directory containing this file.
@@ -16,8 +14,8 @@ requirejs.config({
     //are loaded relative to the top-level JS file.
     nodeRequire: require
 });
-
 var responsePlugins = [];
+
 
 jQuery.each(PLUGINS, function(index,name) {
 requirejs([name],
@@ -28,8 +26,10 @@ function   (plugin) {
 });
 
 
+var input = process.argv[2];
+
 
 jQuery.each(responsePlugins, function(index,plugin) {
     plugin = responsePlugins[index];  
-    console.log(plugin.reply());
+    console.log(plugin.reply(input));
 });

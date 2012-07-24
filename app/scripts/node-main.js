@@ -1,5 +1,5 @@
 var PLUGINS = ['./plugins/greet', './plugins/weather'];
-var jQuery =require('jQuery');
+var jQuery = require('jQuery');
 var repl = require("repl");
 var requirejs = require('requirejs');
 
@@ -18,16 +18,22 @@ requirejs.config({
 });
 
 var Rei;
-requirejs(['./rei'], function(rei) { Rei = rei } );
+requirejs(['./rei'], function(rei) {
+    Rei = rei
+});
 Rei.initializePlugins(PLUGINS);
 
 // Hack up the REPL to do something useful for basic text input
+
 function reiEval(cmd, context, filename, callback) {
-    cmd = cmd.replace(/^./,'').replace(/.$/,'');
-        var response = Rei.handleQuery(cmd);
-        callback(null, response);
+    cmd = cmd.replace(/^./, '').replace(/.$/, '');
+    var response = Rei.handleQuery(cmd);
+    callback(null, response);
 }
 
 
 //A "local" node repl with a custom prompt
-var local = repl.start({ eval: reiEval, prompt: "Say something? "    } );
+var local = repl.start({
+    eval: reiEval,
+    prompt: "Say something? "
+});

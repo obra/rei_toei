@@ -1,6 +1,9 @@
 var PLUGINS = ['./plugins/greet', './plugins/weather'];
 var jQuery =require('jQuery');
 var requirejs = require('requirejs');
+var repl = require("repl");
+
+
 requirejs.config({
     //Use node's special variable __dirname to
     //get the directory containing this file.
@@ -14,38 +17,46 @@ requirejs.config({
     //are loaded relative to the top-level JS file.
     nodeRequire: require
 });
-var responsePlugins = [];
 
+var Rei = { responsePlugins: [],
+        
 
-
-function initializePlugins(pluginNames) {
-
+initializePlugins: function(pluginNames) {
+    var that = this;
 
 
 jQuery.each(pluginNames, function(index,name) {
 requirejs([name],
 function   (plugin) {
-    responsePlugins.push(plugin);
-});
+    that.responsePlugins.push(plugin);
 
 });
-}
+
+});
+},
 
 
 
-function handleQuery(input) {
 
+    handleQuery: function(input) {
+        var that = this;
     var responses = [];
 
-jQuery.each(responsePlugins, function(index,plugin) {
+jQuery.each(that.responsePlugins, function(index,plugin) {
     responses[plugin.name] = plugin.reply({ rawInput: input, jQuery: jQuery } );
 });
     return responses;
+}};
+
+Rei.initializePlugins(PLUGINS);
+
+// Hack up the REPL to do something useful for basic text input
+function reiEval(cmd, context, filename, callback) {
+    cmd = cmd.replace(/^./,'').replace(/.$/,'');
+        var response = Rei.handleQuery(cmd);
+        callback(null, response);
 }
 
-initializePlugins(PLUGINS);
 
-
-var input = process.argv[2];
-console.log(handleQuery(input));
-
+//A "local" node repl with a custom prompt
+var local = repl.start({ eval: reiEval, prompt: "Say something? "    } );

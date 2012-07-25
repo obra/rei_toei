@@ -14,4 +14,3 @@ Rough order of ops:
 * persistent storage for plugins
     - is there an abstraction that can work both in phonegap and in node?
 * give users the ability to +/- plugins
-* 

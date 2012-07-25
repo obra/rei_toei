@@ -8,9 +8,9 @@ requirejs(['./rei'], function(rei) {
 
 function handleQuery() {
     var cmd = jQuery("#q").val();
-    $("#conversation").append('<div class="user">'+cmd+'</div>');
+    $("#conversation").append('Person: <div class="user">'+cmd+'</div>');
     var response = Rei.handleQuery(cmd);
-    $("#conversation").append('<div class="rei">'+JSON.stringify(response)+'</div>');
+    $("#conversation").append('Bot: <div class="rei">'+JSON.stringify(response)+'</div>');
         
 } 
 

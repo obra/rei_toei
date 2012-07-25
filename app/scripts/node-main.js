@@ -1,4 +1,6 @@
 var PLUGINS = ['./plugins/greet', './plugins/weather'];
+
+
 var jQuery = require('jQuery');
 var repl = require("repl");
 var requirejs = require('requirejs');
@@ -20,12 +22,14 @@ requirejs.config({
 var Rei;
 requirejs(['./rei'], function(rei) {
     Rei = rei
+    Rei.initializePlugins(PLUGINS);
 });
-Rei.initializePlugins(PLUGINS);
 
 // Hack up the REPL to do something useful for basic text input
 
 function reiEval(cmd, context, filename, callback) {
+    // Strip the ( ) added by the node repl. We should get a useful repl
+    // sometime
     cmd = cmd.replace(/^./, '').replace(/.$/, '');
     var response = Rei.handleQuery(cmd);
     callback(null, response);

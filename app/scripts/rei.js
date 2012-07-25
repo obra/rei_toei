@@ -1,5 +1,5 @@
 define(
-['jQuery'], function(jquery) {
+['jquery'], function(jquery) {
     var jQuery = jquery;
 
     return {
@@ -12,7 +12,7 @@ define(
 
                 function(plugin) {
                     that.responsePlugins.push(plugin);
-
+                    console.log("Loaded plugin: "+name);
                 });
 
             });
@@ -20,9 +20,10 @@ define(
 
         handleQuery: function(input) {
             var that = this;
-            var responses = [];
+            var responses = {};
 
             jQuery.each(that.responsePlugins, function(index, plugin) {
+                console.log("Asking "+plugin.name+" about "+input);
                 responses[plugin.name] = plugin.reply({
                     rawInput: input,
                     jQuery: jQuery

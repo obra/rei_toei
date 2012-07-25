@@ -1,4 +1,4 @@
-var PLUGINS = ['./plugins/greet', './plugins/weather', './plugins/factoids'];
+var PLUGINS = ['./plugins/greet', './plugins/weather'];
 var jQuery = require('jQuery');
 var repl = require("repl");
 var requirejs = require('requirejs');

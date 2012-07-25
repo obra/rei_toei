@@ -1,0 +1,35 @@
+div#conversation {
+
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    left: 50px;
+    right: 50px;
+    overflow-y: auto;
+    background-color: #333366;
+    padding: 25px;
+}
+
+div#conversation .reiname {
+    color: white;
+    font-weight: bold;
+}
+
+div#conversation .yourname {
+    color: red;
+    font-weight: bold;
+}
+
+div#conversation .msg {
+    color: white;
+    font-weight: bold;
+    font-family: "Courier New", "Courier", monospace;
+}
+
+div#userinput {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    right: 50px;
+
+}

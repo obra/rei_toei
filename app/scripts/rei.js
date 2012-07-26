@@ -1,11 +1,12 @@
 define(
 [
     'jquery',
-    'pos'
-], function(jquery, pos) {
+    'pos',
+    'stem'
+], function(jquery, pos, stem) {
     var jQuery = jquery,
-        Pos = pos;
-    console.log("Pos",Pos);
+        Pos = pos,
+        Stemmer = stem;
 
     return {
         responsePlugins: [],
@@ -34,15 +35,22 @@ define(
             var responses = {};
             var tokens = new Pos.Lexer().lex(input);
             var tags = new Pos.Tagger().tag(tokens);
+
+            jQuery.each(tags, function(idx, tag) {
+                // stem each token in the list of token+POS
+                // and add the stem to the end of the list
+                // yielding [token, POS, stem]
+                tag.push(Stemmer.stem(tag[0]));
+            });
+
             var args = {
                 rawInput: input,
-                tokens: tokens,
-                pos: tags,
+                tokens: tags,
                 jQuery: jQuery,
                 sessionStorage: that.sessionStorage,
                 persistentStorage: that.persistentStorage
             };
-            // TODO: do some NLP here
+            console.log(args);
 
             jQuery.each(that.responsePlugins, function(index, plugin) {
                 console.log("Asking "+plugin.name+" about "+input);

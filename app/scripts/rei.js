@@ -1,6 +1,11 @@
 define(
-['jquery'], function(jquery) {
-    var jQuery = jquery;
+[
+    'jquery',
+    'pos'
+], function(jquery, pos) {
+    var jQuery = jquery,
+        Pos = pos;
+    console.log("Pos",Pos);
 
     return {
         responsePlugins: [],
@@ -27,17 +32,21 @@ define(
         handleQuery: function(input) {
             var that = this;
             var responses = {};
-
+            var tokens = new Pos.Lexer().lex(input);
+            var tags = new Pos.Tagger().tag(tokens);
+            var args = {
+                rawInput: input,
+                tokens: tokens,
+                pos: tags,
+                jQuery: jQuery,
+                sessionStorage: that.sessionStorage,
+                persistentStorage: that.persistentStorage
+            };
             // TODO: do some NLP here
 
             jQuery.each(that.responsePlugins, function(index, plugin) {
                 console.log("Asking "+plugin.name+" about "+input);
-                responses[plugin.name] = plugin.reply({
-                    rawInput: input,
-                    jQuery: jQuery,
-                    sessionStorage: that.sessionStorage,
-                    persistentStorage: that.persistentStorage
-                });
+                responses[plugin.name] = plugin.reply(args);
             });
             return responses;
         }

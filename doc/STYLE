@@ -1,0 +1,4 @@
+Javascript style is enforced with einars' python version of js-beautifty:
+    https://github.com/einars/js-beautify/
+
+As a rule, we don't beautify upstream code unless we're giving up and forking it entirely.

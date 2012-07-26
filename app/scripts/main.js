@@ -1,8 +1,8 @@
-var PLUGINS = ['./plugins/greet', './plugins/weather'];
+var PLUGINS = ['./plugins/greet', './plugins/weather', './plugins/factoids'];
 var Rei;
 requirejs(['./rei'], function(rei) {
-    Rei = rei
-    Rei.initializePlugins(PLUGINS);
+    Rei = rei;
+    Rei.initialize(PLUGINS);
 
 });
 
@@ -36,5 +36,12 @@ jQuery("#q").on("keyup", function(e) {
 
 jQuery().ready(function() {
     reiSay("Hi! I'm Rei Toei. What's your name?");
+    // Wait for PhoneGap to load
+    //
+
+    // PhoneGap is ready
+        var db = window.openDatabase("test", "1.0", "Test DB", 1000000);
+
+
 
 });

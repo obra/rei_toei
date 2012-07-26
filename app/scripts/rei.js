@@ -1,17 +1,27 @@
 define(
-[
-    'jquery',
-    'pos',
-    'stem'
-], function(jquery, pos, stem) {
+['jquery', 'pos', 'stem'], function(jquery, pos, stem) {
     var jQuery = jquery,
         Pos = pos,
         Stemmer = stem;
 
+    var _DB_NAME = 'rei_toei';
     return {
         responsePlugins: [],
         persistentStorage: {},
         sessionStorage: {},
+        storage: window.localStorage,
+
+        getFactoid: function(query) {
+           var key = jQuery.trim(query.toLowerCase()); 
+           console.log("Looking for a factoid called: "+key);
+           var value =  this.storage.getItem("factoid."+key);
+           return value;
+        },
+        putFactoid: function(key, value) {
+            key = jQuery.trim(key.toLowerCase()); 
+            console.log("Learning that '"+key+"' is '"+value+"'");
+            this.storage.setItem("factoid."+key, value);
+        },
         initializePlugins: function(pluginNames) {
             var that = this;
 
@@ -24,10 +34,13 @@ define(
 
                 function(plugin) {
                     that.responsePlugins.push(plugin);
-                    console.log("Loaded plugin: "+name);
+                    console.log("Loaded plugin: " + name);
                 });
 
             });
+        },
+        initialize: function(pluginNames) {
+            this.initializePlugins(pluginNames);
         },
 
         handleQuery: function(input) {
@@ -53,7 +66,7 @@ define(
             console.log(args);
 
             jQuery.each(that.responsePlugins, function(index, plugin) {
-                console.log("Asking "+plugin.name+" about "+input);
+                console.log("Asking " + plugin.name + " about " + input);
                 responses[plugin.name] = plugin.reply(args);
             });
             return responses;

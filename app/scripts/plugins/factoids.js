@@ -1,54 +1,32 @@
 
 define(['plugins/factoids'], function() {
-    var fs = require('fs');
-    console.log(fs);
-    var factoids = {};
-
-    function readLines(input, func) {
-        var remaining = '';
-
-        input.on('data', function(data) {
-            remaining += data;
-            var index = remaining.indexOf('\n');
-            var last = 0;
-            while (index > -1) {
-                var line = remaining.substring(last, index);
-                last = index + 1;
-                func(line);
-                index = remaining.indexOf('\n', last);
-            }
-
-            remaining = remaining.substring(last);
-        });
-
-        input.on('end', function() {
-            if (remaining.length > 0) {
-                func(remaining);
-            }
-        });
-    }
-
-
-    function buildArray(data) {
-        var split = data.split(/=>/, 2);
-        console.log(split[0] + " ...is... " + split[1]);
-        factoids[split[0]] = split[1];
-    }
-
-    var input = fs.createReadStream('factoids.txt');
-    readLines(input, buildArray);
-
-
     return {
         name: 'factoids',
         reply: function(args) {
-            var result = factoids[args.rawInput];
-            if (result) {
-                return [1, result]
-            } else {
-                return [0, 'Sorry!'];
+            if (matching = args.rawInput.match(/^\s*(.*?)\sis\s(.*)$/i)) {
+                var key = matching[1];
+                var value = matching[2];
+                if (!key.match(/^what$/i)) {
+                 this.putFactoid(key, value);
+                return [1, "Ok. I've made a note of it"];
+                }
             }
+                var query = args.rawInput.replace(/\?$/,'').replace(/^What is/i,''); 
+                var result = this.getFactoid(query);
+                if (result !== null) {
+                    return [1, result];
+                } else {
+                    return [0, "Nothing there. Teach me?"];
+                }
+        },
+        putFactoid: function(key,value) {
+                // TODO - check for existing factoid with this name here
+                Rei.putFactoid(key, value);
+        },
+        getFactoid: function(key) {
+            return Rei.getFactoid(key);
         }
+        
     }
 }
 );

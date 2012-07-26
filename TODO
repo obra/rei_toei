@@ -14,3 +14,7 @@ Rough order of ops:
 * persistent storage for plugins
     - is there an abstraction that can work both in phonegap and in node?
 * give users the ability to +/- plugins
+
+* Build a noun-phrase constructor based on the part of speech tagging we're
+* already doing
+    there's a cpan module to cargo cult from

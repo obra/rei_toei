@@ -1,0 +1,22 @@
+On converting Node.js modules into something require.js compatible:
+
+1. run browserify on the entry module of the Node.js package
+2. suppose the module is called 'foo' and the entry file 'main.js'.
+
+  (a) at the head of the compiled .js file, make the following change:
+
+    -(function(){var require = function (file, cwd) {
+    +define(['foo'],function(){var require = function (file, cwd) {
+
+    i.e. add the "define(['foo']", and take out the opening paren
+
+  (b) at the tail of the compiled .js file, make the following change:
+
+    -require("/main.js");
+    -})();
+    -
+    +return require("/main.js");
+    +});
+
+    i.e. add the "return" to the require line, and remove the "()"
+    from the last line.

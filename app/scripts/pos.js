@@ -1,4 +1,4 @@
-(function(){var require = function (file, cwd) {
+define(['pos'],function(){var require = function (file, cwd) {
     var resolved = require.resolve(file, cwd || '/');
     var mod = require.modules[resolved];
     if (!mod) throw new Error(
@@ -298406,6 +298406,5 @@ Lexer.prototype.lex = function(string){
 require.define("/main.js",function(require,module,exports,__dirname,__filename,process){exports.Tagger = require('./POSTagger');
 exports.Lexer = require('./lexer');
 });
-require("/main.js");
-})();
-
+return require("/main.js");
+});

@@ -3,6 +3,9 @@ define(['plugins/factoids'], function() {
     return {
         name: 'factoids',
         reply: function(args) {
+            if (matches = args.rawInput.match(/^factoid (?:grab|fetch)\s*(.*)$/i)) {
+                return [1, this.learnFromURL(matches[1])];
+            }
             if (args.rawInput.match(/^factoid braindump$/i)) {
                 return [1, Rei.dumpFactoids()];
             }
@@ -31,6 +34,19 @@ define(['plugins/factoids'], function() {
         },
         dumpFactoids: function() {
 
+        },
+        learnFromURL: function(url) {
+               handleResult = function (data, textStatus, jqXHR) {
+                  arrayOfLines = data.match(/[^\r\n]+/g);
+                  for (var i = 0; i < arrayOfLines.length; i++) {
+                      if ( matches = arrayOfLines[i].match(/^\s*(.*?)=>\s*(.*)\s*$/)) {
+                          Rei.putFactoid(matches[1], matches[2]);
+                      }
+                  }
+                    return [1, "Learned "+arrayOfLines.length+ " factoids."];
+                }
+
+                jQuery.get( url, undefined, handleResult);
         }
 
     }

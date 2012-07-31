@@ -2,19 +2,31 @@ The rough plan is to build a commandline bot that runs from node as a small harn
 
 Rough order of ops:
 
+
+
+DONE
+
 * basic harness that takes a query and returns a response
 * plugin api
 * plugin system that hands the the parsed query to each plugin and collects
   possible responses with confidence levels
 * nlp to give the plugins something better than "regexes on a string"
-* a responder that takes the responses, evaluates their confidence metrics,
-  and spits one or more of them back to the user
 * local scratch space for short-term memory
 * something to load the plugins from separate files
 * persistent storage for plugins
-    - is there an abstraction that can work both in phonegap and in node?
-* give users the ability to +/- plugins
 
+TODO
+
+* a responder that takes the responses, evaluates their confidence metrics,
+  and spits one or more of them back to the user
+* give users the ability to +/- plugins
 * Build a noun-phrase constructor based on the part of speech tagging we're
-* already doing
     there's a cpan module to cargo cult from
+* Document our JS coding standards
+* Script total-project linting
+* Script total-project code formatting
+* Write a test that actually tests name memoriziation
+* Get the weather plugin to only answer weather-related questions
+* Get the factoid plugin to only give back factoids when you ASK
+* build rei into the phonegap app
+* get an iframe-based directions plugin

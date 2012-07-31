@@ -1,0 +1,24 @@
+Rei needs
+
+    a way for it to decide which plugin will handle a query
+    knock out plugins as early as possible - before they take up cognitive load
+    have the plugins register themselves with a response plugin router.
+    some kind of response format.
+        deciding which parts of the response are being handled by which layer
+        personality is pluggable, maybe?
+    philosophy about what kind of experience do we want people to have.
+    do we have standards about what standards plugins should meet?
+    to what degree should people be tailoring their speech for rei?
+    where would we rather have rei say "I don't understand" than do something wrong?
+    What kinds of activities do we see her being targeted at?
+    "Queries that have something to do with me are the interesting ones"
+    "I love the fact that I can ask siri "When's my next appointment with Dr ____""
+    Siri is mainly tuned toward querying, rather than acting.
+        setting alarms
+        moving calendar items
+    Siri is not totally stateless.
+        we need contextualized stateful flows.
+        you should be able to run down a decision tree.
+    rei needs to be able to be useful. just a speech interface to google/wikipedia/urbandictionary is "meh"
+    What's our target environment?
+         

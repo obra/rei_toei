@@ -7,7 +7,6 @@ define(
     var _DB_NAME = 'rei_toei';
     return {
         responsePlugins: [],
-        persistentStorage: {},
         sessionStorage: {},
         storage: window.localStorage,
 
@@ -77,7 +76,7 @@ define(
                 tokens: tags,
                 jQuery: jQuery,
                 sessionStorage: that.sessionStorage,
-                persistentStorage: that.persistentStorage
+                persistentStorage: that.storage
             };
             console.log(args);
 

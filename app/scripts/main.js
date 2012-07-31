@@ -3,6 +3,12 @@ var Rei;
 requirejs(['./rei'], function(rei) {
     Rei = rei;
     Rei.initialize(PLUGINS);
+    var name = Rei.getFactoid('my name');
+    if (name) { 
+        reiSay("Hi "+name + ". How are things?");
+    } else{
+        reiSay("Hi! I'm Rei Toei. What's your name?");
+    }
 
 });
 
@@ -35,13 +41,6 @@ jQuery("#q").on("keyup", function(e) {
 });
 
 jQuery().ready(function() {
-    reiSay("Hi! I'm Rei Toei. What's your name?");
-    // Wait for PhoneGap to load
-    //
-
-    // PhoneGap is ready
-        var db = window.openDatabase("test", "1.0", "Test DB", 1000000);
-
 
 
 });

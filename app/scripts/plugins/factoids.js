@@ -3,15 +3,16 @@ define(['plugins/factoids'], function() {
     return {
         name: 'factoids',
         reply: function(args) {
+            var matches;
             if (matches = args.rawInput.match(/^factoid (?:grab|fetch)\s*(.*)$/i)) {
                 return [1, this.learnFromURL(matches[1])];
             }
             if (args.rawInput.match(/^factoid braindump$/i)) {
                 return [1, Rei.dumpFactoids()];
             }
-            if (matching = args.rawInput.match(/^\s*(.*?)\sis\s(.*)$/i)) {
-                var key = matching[1];
-                var value = matching[2];
+            if (matches = args.rawInput.match(/^\s*(.*?)\sis\s(.*)$/i)) {
+                var key = matches[1];
+                var value = matches[2];
                 if (!key.match(/^what$/i)) {
                     this.putFactoid(key, value);
                     return [1, "Ok. I've made a note of it"];
@@ -36,18 +37,25 @@ define(['plugins/factoids'], function() {
 
         },
         learnFromURL: function(url) {
-               handleResult = function (data, textStatus, jqXHR) {
-                  arrayOfLines = data.match(/[^\r\n]+/g);
-                  for (var i = 0; i < arrayOfLines.length; i++) {
-                      if ( matches = arrayOfLines[i].match(/^\s*(.*?)=>\s*(.*)\s*$/)) {
-                          Rei.putFactoid(matches[1], matches[2]);
-                      }
-                  }
-                    return [1, "Learned "+arrayOfLines.length+ " factoids."];
+            handleResult = function (data, textStatus, jqXHR) {
+                console.log("factoid#learnFromURL: fetched "+data.length+"chars, ");
+                var arrayOfLines = data.match(/[^\r\n]+/g);
+                for (var i = 0; i < arrayOfLines.length; i++) {
+                    var matches = arrayOfLines[i].match(/^\s*(.*?)=>\s*(.*)\s*$/);
+                    if (matches) {
+                        Rei.putFactoid(matches[1], matches[2]);
+                    }
                 }
+                if (arrayOfLines.length > 0) {
+                    return [1, "Learned "+arrayOfLines.length+ " factoids."];
+                } else {
+                    console.error("No factoids extracted!");
+                }
+            };
 
-                jQuery.get( url, undefined, handleResult);
+            console.log("factoid#learnFromURL: fetching "+url);
+            jQuery.get( url, undefined, handleResult);
         }
 
-    }
+    };
 });

@@ -11,8 +11,8 @@ describe('Factoid plugin', function(){
 	describe('name memory', function(){
 		it('should learn my name', function(){
 			var response = Rei.handleQuery("my name is Yoz");
-			console.log("Factoid response:", response);
-			response.factoids[0].should.equal(0);
+			console.log("Factoid response:", response.responses);
+			response.responses['factoids'][0].should.equal(1);
 		});
 	});
 });

@@ -430,7 +430,7 @@ POSTagger.prototype.tag = function(words){
      * Apply transformational rules
      **/
     for (var i = 0; i < words.length; i++) {
-        word = ret[i];
+        var word = ret[i];
 		//  rule 1: DT, {VBD | VBP} --> DT, NN
         if (i > 0 && ret[i - 1] == "DT") {
             if (word == "VBD" ||

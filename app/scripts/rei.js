@@ -80,11 +80,16 @@ define(
             };
             console.log(args);
 
+            var bestResponse;
             jQuery.each(that.responsePlugins, function(index, plugin) {
                 console.log("Asking " + plugin.name + " about " + input);
-                responses[plugin.name] = plugin.reply(args);
+                var thisResponse = plugin.reply(args);
+                responses[plugin.name] = thisResponse;
+                if (!bestResponse || thisResponse[0] > bestResponse[0]) {
+                    bestResponse = thisResponse;
+                }
             });
-            return responses;
+            return { responses: responses, bestResponse: bestResponse };
         }
     }
 });

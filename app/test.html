@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rei Tests</title>
+        <!-- Test framework -->
+        <script src="tests/mocha.js"></script>
+        <script src="tests/chai.js"></script>
+        <script>mocha.setup('bdd')</script>
+
+        <script src="scripts/require-jquery.js"></script>
+        <script src="tests/test.dummy.js"></script>
+        <script>
+        $(function(){
+            requirejs.config({
+                baseUrl: 'scripts'
+            });
+            requirejs(['./rei'], function(rei) {
+                window.Rei = rei;
+                var runner = mocha.run();
+                runner.globals(['PLUGINS', 'jQuery', 'chai', 'Rei', 'word']);
+
+                runner.on('test end', function(test){
+                    console.log(test.fullTitle());
+                });
+            });
+        });
+        </script>
+
+
+        <link rel="stylesheet" type="text/css" href="tests/mocha.css"/>
+
+    </head>
+    <body>
+        <div id="mocha"></div>
+    </div>
+    </body>
+</html>

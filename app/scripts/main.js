@@ -18,7 +18,8 @@ function handleQuery() {
         return;
     $("#conversation").append('<div class="user"><span class="yourname">You:</span> <span class="msg">'+cmd+'</span></div>');
     var response = Rei.handleQuery(cmd);
-    reiSay(JSON.stringify(response));
+    reiSay(response.bestResponse[1]);
+    //reiSay(JSON.stringify(response));
 } 
 
 function reiSay(string) {

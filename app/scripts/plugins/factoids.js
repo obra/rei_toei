@@ -18,7 +18,9 @@ define(['plugins/factoids'], function() {
                     return{ confidence:1, message: "Ok. I've made a note of it"};
                 }
             }
-            var query = args.rawInput.replace(/\?$/, '').replace(/^What is/i, '');
+            if (matches = args.rawInput.match(/^(.*)\?$/)) {
+
+            var query = matches[1].replace(/^What is/i, '');
             var result = this.getFactoid(query);
             if (result !== null) {
                 return { confidence: 1, message: result};

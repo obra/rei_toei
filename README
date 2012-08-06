@@ -1,0 +1,11 @@
+Rei Toei is an open, extensible digital agent built in Javascript.  While such creations have recently become quite trendy thanks to the nice folks in Cupertino (and more recently in Mountain View), many of us have been interacting with bots on a daily basis for a number of years. Traditionally, they live on IRC channels or appear in IM chat windows. Some of these bots are more conversational. Others tend toward a simple ability to regurgitate facts or report on current events.  What most of them share is a design that facilitates extension and experimentation.  Even when they start from the same codebase, most bots quickly develop their own personalities.
+
+The current generation of virtual digital assistants are very...centrally managed. There's litte an end user can do to extend, improve or customize Siri or the Android equivalent.
+
+Rei Toei is a different kind of digital agent. Built in Javascript, she's designed for the open web. Anyone can build a plugin to teach her a new ability or customize how she behaves.  All of her smarts live on your phone (or in your browser). 
+
+Our initial targets are a browser-based version of Rei for testing and development (and quite possibly real day-to-day use) as well as a PhoneGap version of Rei for Android.  (On Android, Rei can take advantage of the native speech recognition and text to speech APIs that PhoneGap oh-so-conveniently provides wrappers for)
+
+Where we are as of early August 2012:
+
+We have the skeleton of a first version of Rei that runs in a browser. She can take a user's query, perform some basic NLP and then hand off the bits to a suite of plugins which can come back with answers.  Interacting with Rei doesn't really feel like a conversation yet, though she is capable of learning basic facts. The TODO file is...mostly up to date with with what we're thinking, but if there's something you'd be interested in doing to help move Rei forward, we should definitely chat.

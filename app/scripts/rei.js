@@ -85,7 +85,7 @@ define(
                 console.log("Asking " + plugin.name + " about " + input);
                 var thisResponse = plugin.reply(args);
                 responses[plugin.name] = thisResponse;
-                if (!bestResponse || thisResponse[0] > bestResponse[0]) {
+                if (!bestResponse || thisResponse['confidence'] > bestResponse['confidence']) {
                     bestResponse = thisResponse;
                 }
             });

@@ -5,25 +5,25 @@ define(['plugins/factoids'], function() {
         reply: function(args) {
             var matches;
             if (matches = args.rawInput.match(/^factoid (?:grab|fetch)\s*(.*)$/i)) {
-                return [1, this.learnFromURL(matches[1])];
+                return { confidence: 1, message: this.learnFromURL(matches[1])};
             }
             if (args.rawInput.match(/^factoid braindump$/i)) {
-                return [1, Rei.dumpFactoids()];
+                return { confidence: 1, message: Rei.dumpFactoids()};
             }
             if (matches = args.rawInput.match(/^\s*(.*?)\sis\s(.*)$/i)) {
                 var key = matches[1];
                 var value = matches[2];
                 if (!key.match(/^what$/i)) {
                     this.putFactoid(key, value);
-                    return [1, "Ok. I've made a note of it"];
+                    return{ confidence:1, message: "Ok. I've made a note of it"};
                 }
             }
             var query = args.rawInput.replace(/\?$/, '').replace(/^What is/i, '');
             var result = this.getFactoid(query);
             if (result !== null) {
-                return [1, result];
+                return { confidence: 1, message: result};
             } else {
-                return [0, "Nothing there. Teach me?"];
+                return { confidence: 0, message: "Nothing there. Teach me?"};
             }
         },
         putFactoid: function(key, value) {
@@ -47,7 +47,7 @@ define(['plugins/factoids'], function() {
                     }
                 }
                 if (arrayOfLines.length > 0) {
-                    return [1, "Learned "+arrayOfLines.length+ " factoids."];
+                    return { confidence:1, message:"Learned "+arrayOfLines.length+ " factoids."};
                 } else {
                     console.error("No factoids extracted!");
                 }

@@ -19,12 +19,11 @@ function handleQuery() {
     $("#conversation").append('<div class="user"><span class="yourname">You:</span> <span class="msg">'+cmd+'</span></div>');
     var response = Rei.handleQuery(cmd);
     var best = response.bestResponse;
-    reiSay(best[1].message);
-    if (best[1].iframeUrl) {
-        reiShowIframe(best[1].iframeUrl);
+    reiSay(best.message);
+    if (best.iframeUrl) {
+        reiShowIframe(best.iframeUrl);
     }
-    reiSay(response.bestResponse[1]);
-    reiSay(JSON.stringify(response));
+    console.log(response);
 } 
 
 function reiSay(string) {

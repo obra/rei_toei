@@ -6,6 +6,8 @@ Rei Toei is a different kind of digital agent. Built in Javascript, she's design
 
 Our initial targets are a browser-based version of Rei for testing and development (and quite possibly real day-to-day use) as well as a PhoneGap version of Rei for Android.  (On Android, Rei can take advantage of the native speech recognition and text to speech APIs that PhoneGap oh-so-conveniently provides wrappers for)
 
+About the name -- http://en.wikipedia.org/wiki/Rei_Toei should begin to describe our Idoru and where she's headed. 
+
 Where we are as of early August 2012:
 
 We have the skeleton of a first version of Rei that runs in a browser. She can take a user's query, perform some basic NLP and then hand off the bits to a suite of plugins which can come back with answers.  Interacting with Rei doesn't really feel like a conversation yet, though she is capable of learning basic facts. The TODO file is...mostly up to date with with what we're thinking, but if there's something you'd be interested in doing to help move Rei forward, we should definitely chat.

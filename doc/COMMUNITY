@@ -1,0 +1,20 @@
+# Where we talk about Rei
+
+## IRC
+
+You can probably find some folks on #reitoei on irc.freenode.net.
+
+## Mailing list
+
+rei-dev@groups.google.com is the general all-purpose development mailing list.
+As of this writing, the list is brand new, so it'll take a bit of time for
+the archives at https://groups.google.com/forum/#!forum/rei-dev to be very
+worthwhile. 
+
+(That URL is also the right place to go to subscribe to the list)
+
+## GIT
+
+Rei's repository lives at https://github.com/obra/rei_toei - We <3 pull requests.
+After 2 accepted pull requests, please feel free to ping a project admin for a commit bit.
+(At the moment, Jesse is probably the right person to ping)

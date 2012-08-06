@@ -14,6 +14,7 @@ DONE
 * local scratch space for short-term memory
 * something to load the plugins from separate files
 * persistent storage for plugins
+* Write a test that actually tests name memoriziation
 
 TODO
 
@@ -25,8 +26,9 @@ TODO
 * Document our JS coding standards
 * Script total-project linting
 * Script total-project code formatting
-* Write a test that actually tests name memoriziation
 * Get the weather plugin to only answer weather-related questions
 * Get the factoid plugin to only give back factoids when you ASK
 * build rei into the phonegap app
 * get an iframe-based directions plugin
+* make sure each incorporate file contains license and source info
+* License the project under apache2

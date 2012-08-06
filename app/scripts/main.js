@@ -18,12 +18,22 @@ function handleQuery() {
         return;
     $("#conversation").append('<div class="user"><span class="yourname">You:</span> <span class="msg">'+cmd+'</span></div>');
     var response = Rei.handleQuery(cmd);
+    var best = response.bestResponse;
+    reiSay(best[1].message);
+    if (best[1].iframeUrl) {
+        reiShowIframe(best[1].iframeUrl);
+    }
     reiSay(response.bestResponse[1]);
-    //reiSay(JSON.stringify(response));
+    reiSay(JSON.stringify(response));
 } 
 
 function reiSay(string) {
     $("#conversation").append('<div class="rei"><span class="reiname">Rei:</span> <span class="msg">'+string+'<span></div>');
+
+}
+
+function reiShowIframe(url) {
+    $("#conversation").append('<div class="rei"><span class="reiname">Rei:</span> <iframe src="'+url+'"/></div>');
 
 }
 

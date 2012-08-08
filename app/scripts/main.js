@@ -17,6 +17,9 @@ function handleQuery() {
     if (cmd === '')
         return;
     $("#conversation").append('<div class="user"><span class="yourname">You:</span> <span class="msg">'+cmd+'</span></div>');
+
+    reiSay("<pre>"+JSON.stringify(Rei.getTokens(cmd, null, '\t'))+"</pre>");
+
     var response = Rei.handleQuery(cmd);
     var best = response.bestResponse;
     reiSay(best.message);

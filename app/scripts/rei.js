@@ -57,23 +57,27 @@ define(
         initialize: function(pluginNames) {
             this.initializePlugins(pluginNames);
         },
-
+         getTokens: function (input) {
+           var lex = new Pos.Lexer().lex(input);
+           var tokens = new Pos.Tagger().tag(lex);
+           return tokens;
+         },
         handleQuery: function(input) {
             var that = this;
             var responses = {};
-            var tokens = new Pos.Lexer().lex(input);
-            var tags = new Pos.Tagger().tag(tokens);
+            var tokens = Rei.getTokens(input);
 
-            jQuery.each(tags, function(idx, tag) {
+            jQuery.each(tokens, function(idx, tag) {
                 // stem each token in the list of token+POS
                 // and add the stem to the end of the list
                 // yielding [token, POS, stem]
                 tag.push(Stemmer.stem(tag[0]));
             });
 
+
             var args = {
                 rawInput: input,
-                tokens: tags,
+                tokens: tokens,
                 jQuery: jQuery,
                 sessionStorage: that.sessionStorage,
                 persistentStorage: that.storage

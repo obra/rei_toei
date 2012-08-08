@@ -1,0 +1,182 @@
+In general, plugins should be built around user behavior and questions
+a user might ask or orders a user might give.  While service or API
+specific plugins will undoubtably make a lot of sense in some cases,
+it's better if those plugins just offer up responses to user
+questions. Hopefully, over time, plugins which answer the same or
+similar questions based on disparate data sources will begin to
+converge.
+
+Time 
+    What time is it?
+    Is it tuesday?
+    What time is it in Boston?
+
+Alarms
+
+    Set an alarm for 10 minutes from now
+    Set an alarm for seven fifteen AM
+    What time is my alarm for?
+
+
+Calendar
+
+    When's my next meeting?
+    How many meetings do I have today?
+    What's my day look like?
+    Schedule a meeting for 2pm tuesday with bob about the new project
+    Cancel my next appointment
+    Ask Kaia to call me when she gets a chance.
+
+
+Reminders
+
+    Tomorrow afternoon, remind me to call my mom.
+    I should water the plants on monday
+
+Location
+    Where am I?
+    How do I get home?
+    How do I get to SFO?
+    How do I get to Jesse?
+
+People finding
+    Call Jesse 
+    Call Jesse on his cell
+    Call Jesse at home
+    Call my {mom, dad, son, daughter, husband, wife, umfriend} 
+        If it doesn't know who that is, it should ask.
+    Where is jesse?
+    When was jesse last sighted?
+    Tell me when jesse next appears online.
+    Tell me when jesse's next nearby
+
+
+
+Place finding
+    Call Ritual Roasters
+    Where is Ritual Roasters?
+    Is Ritual Roasters open?
+    Is Ritual open?
+        I found a bunch of places with Ritual in their name near you? Which one do you mean?
+        <and then remebers that as 'Ritual'>
+    How do I get to Ritual?
+
+Email
+    (lifted from a third-party doc about Siri)
+
+
+    “Any new email from [insert name] today?”
+    “Show new mail about the [insert subject]”
+    “Show the email from [insert name] [insert day/time]”
+    “Responding to Messages”
+    “Email [insert name] about the [insert subject]”
+    “New email to [insert name]”
+    “Mail [insert name] about [insert subject]”
+    “Email [insert name] and say [insert comment]”
+
+Friends
+    Who's nearby?
+    Are any of my friends at a cafe?
+    Is anybody I know at a bar? (synonym "I need a drink")
+    Who's in town?
+    "Is Jesse at work?"
+
+Stocks
+    
+Twitter
+
+Facebook
+
+Weights and measures
+
+Currency conversion
+
+SMS
+
+Calculator
+
+Paypal / Square / Something
+    Send twelve dollars to schuyler
+
+Time tracking
+    I just spent 30 minutes on the jones project
+    How much time have I spent on the jones project this month?
+
+Time and date
+    Is it tuesday?
+    What time is it?
+    What time is it in Tokyo?
+    When will it be 9am in Tokyo?
+
+
+Weather
+    Is it cold out today?
+    Do I need a raincoat today?
+    Will I need an umbrella tomorrow?
+    Is it going to be sunny on saturday?
+
+
+Notes
+
+    Take a memo: <some string>
+
+
+Driving
+
+    Where can I get some gas?
+    I need a bathroom
+    Are we there yet?
+    Is there anywhere to eat near here?
+
+Flights
+    When will AA flight 412 land?
+    Is my flight on time?
+    Check in for my flight
+    Is Kaia's flight delayed?
+    Set an alarm for 15 minutes before kaia's flight lands.
+    When's the next flight to Helsinki on American Airlines? (defaults to "from here")
+
+Local travel
+    Is it faster to drive to The Ferry Building or to take public transit?
+    Are there any transit delays?
+
+Memes
+    "Make me a sandwich"
+        "Sorry, you didn't say the magic word"
+
+    "Open the pod bay doors"
+
+    <any catchphrase from know your meme>
+
+Games
+    "Look inside mailbox" -> Launch a copy of Adventure
+
+    Knock knock jokes
+
+
+News
+    What's going on in the world?
+    Did something bad happen today?
+    Did something amazing happen today?
+
+Movies
+    What's playing tonight?
+    When/Where is Oceans Sixteen playing?
+    Is The Maltese Falcon any good? 
+        < checks rotten tomatoes>
+
+Comfort
+    I need a hug / I need to see something cute / Unicorn chaser?
+        < picture of a puppy / video of a baby ocelot / etc >
+
+Sports
+    <fill in by someone who knows sports>
+
+Search
+
+    Search <service name> for <string>
+
+Translate
+
+
+http://www.smashwords.com/extreader/read/112124/11/the-unofficial-siri-handbook-the-essential-reference-for-your-iphone-4s has many of hte things siri can say

@@ -1,3 +1,11 @@
+In general, plugins should be built around user behavior and questions
+a user might ask or orders a user might give.  While service or API
+specific plugins will undoubtably make a lot of sense in some cases,
+it's better if those plugins just offer up responses to user
+questions. Hopefully, over time, plugins which answer the same or
+similar questions based on disparate data sources will begin to
+converge.
+
 Time 
     What time is it?
     Is it tuesday?
@@ -167,5 +175,12 @@ Comfort
 
 Sports
     <fill in by someone who knows sports>
+
+Facebook
+
+Foursquare
+
+
+
 
 http://www.smashwords.com/extreader/read/112124/11/the-unofficial-siri-handbook-the-essential-reference-for-your-iphone-4s has many of hte things siri can say

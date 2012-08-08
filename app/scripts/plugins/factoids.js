@@ -27,6 +27,8 @@ define(['plugins/factoids'], function() {
             } else {
                 return { confidence: 0, message: "Nothing there. Teach me?"};
             }
+            }
+            return { confidence: 0};
         },
         putFactoid: function(key, value) {
             // TODO - check for existing factoid with this name here
